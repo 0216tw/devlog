@@ -2,7 +2,7 @@ import { notFound } from 'next/navigation'
 import { baseUrl } from 'app/sitemap'
 import posts from 'content/posts'
 import NotionRenderer from 'components/notion-renderer'
-import Comment from 'components/comment'
+//import Comment from 'components/comment'
 
 export const runtime = 'edge';
 
@@ -13,8 +13,9 @@ export async function generateStaticParams() {
 export function generateMetadata({ params }) {
   let post = posts.find((post) => post.slug === params.slug)
   if (!post) {
-    return
+    return <div>Post not found</div>
   }
+  
   let {
     title,
     date: publishedTime,
@@ -81,7 +82,7 @@ export default async function Blog({ params }) {
         }}
       />
       <NotionRenderer post={post} />
-      <Comment />
+   {/*   <Comment /> */}
     </section>
   )
 }

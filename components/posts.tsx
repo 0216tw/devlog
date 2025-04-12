@@ -7,12 +7,7 @@ export function BlogPosts() {
     <div>
       {posts
         .sort((a, b) => {
-          if (
-            new Date(a.date) > new Date(b.date)
-          ) {
-            return -1
-          }
-          return 1
+          return b.score - a.score
         })
         .map((post) => (
           <Link
